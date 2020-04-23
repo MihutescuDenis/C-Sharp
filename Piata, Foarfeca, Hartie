@@ -1,0 +1,94 @@
+using System;
+using System.Reflection.Metadata;
+using System.Security.Principal;
+using System.Threading.Channels;
+
+namespace PiatraFoarfecaHartie
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var gameover = "";
+            var computerCount = 0;
+            var userCount = 0;
+            var draw = 0;
+            Console.WriteLine("Piatra, foarfeca, hartie game!!!\n");
+
+            while (gameover != "NO")
+            {
+                string[] Vec = new string[3] {"PIATRA", "FOARFECA", "HARTIE"};
+                var RAND = new Random();
+                var RandomVar = RAND.Next(0, 2);
+                var rnd = Convert.ToInt32(RandomVar);
+                var userImput = "";
+
+                do
+                {
+                    Console.Write("Care este alegerea ta din Piatra, Foarfeca, Hartie: ");
+                    userImput = Console.ReadLine().ToUpper();
+                    
+                    
+                        Console.WriteLine("\n------------------------------------------");
+                        Console.WriteLine("User: {0}",userImput);
+                        Console.WriteLine("Computer: {0}", Vec[rnd]);
+                        Console.WriteLine("------------------------------------------\n");
+
+                    if (userImput == "PIATRA" && Vec[rnd] == "FOARFECA")
+                    {
+                        Console.WriteLine("USER WIN!");
+                        userCount += 1;
+                    }
+                    else if (userImput == "FOARFECA" && Vec[rnd] == "HARTIE")
+                    {
+                        Console.WriteLine("USER WIN!");
+                        userCount += 1;
+                    }
+                    else if (userImput == "HARTIE" && Vec[rnd] == "PIATRA")
+                    {
+                        Console.WriteLine("USER WIN!");
+                        userCount += 1;
+                    }
+                    else if (userImput == "PIATRA" && Vec[rnd] == "HARTIE")
+                    {
+                        Console.WriteLine("Computer wins");
+                        computerCount += 1;
+                    }
+                    else if (userImput == "HARTIE" && Vec[rnd] == "FOARFECA")
+                    {
+                        Console.WriteLine("Computer Wins");
+                        computerCount += 1;
+                    }
+                    else if (userImput == "FOARFECA" && Vec[rnd] == "PIATRA")
+                    {
+                        Console.WriteLine("Computer Wins");
+                        computerCount += 1;
+                    }
+                    else if (userImput == Vec[rnd])
+                    {
+                        Console.WriteLine("Draw!");
+                        draw += 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Erroare, poti alege doar dintre: Piatra, Foarfeca, Hartie!");
+                    }
+
+                    Console.Write("Inca un joc?! YES:NO : ");
+                    gameover = Console.ReadLine().ToUpper();
+                    Console.WriteLine("---------------------------------------------\n");
+                } while (!(userImput.Equals("PIATRA")) && (userImput.Equals("FOARFECA")) && (userImput.Equals("HARTIE")));
+
+
+               
+                
+            }
+            Console.WriteLine("User wins " + userCount + " times");
+            Console.WriteLine("Computer wins " + computerCount + " times");
+            Console.WriteLine("Draw " + draw + " times");
+            Console.WriteLine("---------------------------------------------\n");
+        }
+
+    }
+
+}
